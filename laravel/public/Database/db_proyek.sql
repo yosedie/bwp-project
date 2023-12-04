@@ -1,5 +1,5 @@
-CREATE DATABASE your_database_name;
-USE your_database_name;
+CREATE DATABASE db_proyek_dishub;
+USE db_proyek_dishub;
 CREATE TABLE users (
     id INT(10)AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -12,10 +12,10 @@ CREATE TABLE channels (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
-    city ,
-    country,
-    gender,
-    content_type
+    city VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    gender VARCHAR(255) NOT NULL,
+    content_type VARCHAR(255) NOT NULL,
     suscribe INT,
     followers INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
