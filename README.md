@@ -25,4 +25,4 @@ Tampilan
 [15 poin] Ajax
 
 
-Status: menunggu database dari yosua...
+Status: Pesan dari Yosua = "awal nama suatu file pake huruf kapital yaa..."
