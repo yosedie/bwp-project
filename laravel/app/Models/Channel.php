@@ -20,7 +20,7 @@ class Channel extends Model
     ];
 
     protected $attributes = [
-        'subscribe' => 0,
+        'suscribe' => 0,
         'followers' => 0,
     ];
 

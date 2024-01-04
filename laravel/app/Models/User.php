@@ -60,7 +60,7 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function Subscribes() : HasMany {
-        return $this->hasMany(Subscribe::class);
+    public function Suscribes() : HasMany {
+        return $this->hasMany(Suscribe::class);
     }
 }
