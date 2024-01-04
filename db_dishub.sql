@@ -16,7 +16,7 @@ CREATE TABLE channels (
     country VARCHAR(255) NOT NULL,
     gender VARCHAR(255) NOT NULL,
     content_type VARCHAR(255) NOT NULL,
-    suscribe INT,
+    subscribe INT,
     followers INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -35,6 +35,8 @@ CREATE TABLE contents (
 CREATE TABLE watch_later (
     id INT AUTO_INCREMENT PRIMARY KEY,
     names VARCHAR(255) NOT NULL,
+    user_id INT,
+    content_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -43,8 +45,10 @@ CREATE TABLE watch_later (
 CREATE TABLE play_list (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    user_id INT,
+    content_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (content_id) REFERENCES contents(id)
 );
@@ -52,14 +56,18 @@ CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     comment VARCHAR(1000) NOT NULL,
     status VARCHAR(255) NOT NULL,
+    user_id INT,
+    content_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ON UPDATE CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (content_id) REFERENCES contents(id)
 );
-CREATE TABLE suscribes (
+CREATE TABLE subscribes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    user_id INT,
+    content_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
