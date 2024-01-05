@@ -44,23 +44,37 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function Contents() : HasMany {
+    public function Contents(): HasMany
+    {
         return $this->hasMany(Content::class);
     }
 
-    public function WatchLaters() : HasMany {
+    public function WatchLaters(): HasMany
+    {
         return $this->hasMany(WatchLater::class);
     }
 
-    public function PlayLists() : HasMany {
+    public function PlayLists(): HasMany
+    {
         return $this->hasMany(PlayList::class);
     }
 
-    public function Comments() : HasMany {
+    public function Comments(): HasMany
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function Suscribes() : HasMany {
+    public function Suscribes(): HasMany
+    {
         return $this->hasMany(Suscribe::class);
+    }
+
+    public function getRedirectRoute()
+    {
+        if ($this->role == 'admin') {
+            return 'admin';
+        } else {
+            return 'home';
+        }
     }
 }
