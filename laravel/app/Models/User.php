@@ -68,13 +68,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Suscribe::class);
     }
-
-    public function getRedirectRoute()
-    {
-        if ($this->role == 'admin') {
-            return 'admin';
-        } else {
-            return 'home';
-        }
-    }
 }

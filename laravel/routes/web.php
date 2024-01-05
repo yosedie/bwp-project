@@ -14,17 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
 Route::get('/admin', function () {
     return view('admin.home');
-})->middleware(['auth', 'verified'])->name('admin');
+})->middleware(['auth', 'verified', 'admin'])->name('admin');
 
 Route::get('/home', function () {
     return view('home');
