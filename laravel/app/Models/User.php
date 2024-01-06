@@ -78,7 +78,7 @@ class User extends Authenticatable
         if ($this->role == 'admin') {
             return 'admin';
         } else {
-            return 'users';
+            return 'home';
         }
     }
 }
