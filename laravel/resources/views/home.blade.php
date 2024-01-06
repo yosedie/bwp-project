@@ -33,7 +33,15 @@
                         <a class="nav-link" href="#">Channel</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/"><button class="btn btn-danger border-black">Logout</button></a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
                     </li>
                 </ul>
             </div>
