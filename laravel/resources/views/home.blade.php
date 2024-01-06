@@ -50,9 +50,11 @@
 
     {{-- card --}}
     <div class="container-fluid">
-        <div class="card mt-5">
+
+        {{-- @foreach ($content as $item) --}}
+        <div class="card mt-5 mx-2">
             <div class="card-header">
-                Featured
+                {{-- {{ $item->title }} --}}
             </div>
             <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
@@ -60,6 +62,7 @@
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>
+        {{-- @endforeach --}}
 
     </div>
 

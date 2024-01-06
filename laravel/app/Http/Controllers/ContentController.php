@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
-    public function getAllController()
+    public function getAllContent()
     {
         $content = Content::all();
         return view('home', compact('content'));

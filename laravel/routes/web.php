@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,8 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () {
     return view('admin.home');
 })->middleware(['auth', 'verified', 'admin'])->name('admin');
+
+Route::resource('/home', ContentController::class);
 
 Route::get('/home', function () {
     return view('home');
