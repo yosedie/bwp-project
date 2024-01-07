@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\UserAdministrator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,10 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'admin'])->name('admin');
+
+// show all users
+Route::get('/dashboard', [UserAdministrator::class, 'getUsers'])->name('dashboard');
+
+
+
 require __DIR__ . '/auth.php';
