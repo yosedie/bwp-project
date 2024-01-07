@@ -96,7 +96,6 @@
         @endforeach
     </div>
 
-    {{-- Footer --}}
     <footer style="margin-top: 5%;">
         <div class="row p-5 bg-dark">
             <div class="col text-center text-light">
