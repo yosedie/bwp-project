@@ -43,7 +43,7 @@
     {{-- card --}}
     <div class="container-fluid">
     <br><br>
-        <div class="btn btn-danger">
+        <div class="btn btn-danger border-black">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
