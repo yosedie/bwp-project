@@ -47,9 +47,6 @@
                 </form>
             </div>
         </div>
-
-
-
     </div>
 
     <footer style="margin-top: 5%;">
