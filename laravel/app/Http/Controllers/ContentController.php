@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Content;
-use App\Models\PlayList;
-use App\Models\Suscribe;
+use App\Models\ContentVisit;
 use App\Models\User;
 use App\Models\WatchLater;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ContentController extends Controller
 {
@@ -37,6 +35,7 @@ class ContentController extends Controller
         $comments = Comment::where('content_id', $id)->first();
         $watchlater = WatchLater::where('content_id', $id)->first();
         $user = User::where('id', $comments->user_id)->first();
+        $visit = ContentVisit::updateOrInsert(['user_id' => auth()->user()->id, 'content_id' => $contents->id], ['updated_at' => now('+7')]);
         return view('detail', compact('contents', 'comments', 'user', 'watchlater'));
     }
 }

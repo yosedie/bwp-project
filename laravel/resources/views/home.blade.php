@@ -111,7 +111,7 @@
             @foreach (Auth::user()->contentVisits->sortBy('updated_at') as $i => $visit)
                 <div class="col">
                     <div class="card mt-5 mx-2">
-                        <div class="card_header">
+                        <div class="card-header">
                             {{ $i }}
                         </div>
                         <div class="card-body">
