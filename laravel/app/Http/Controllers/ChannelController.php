@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Channel;
+use App\Models\PlayList;
 use Illuminate\Http\Request;
 
 
@@ -16,7 +17,8 @@ class ChannelController extends Controller
         } else {
             $channel = Channel::all();
         }
-        return view('channel', compact("channel", 'query'));
+        $playlist = PlayList::all();
+        return view('channel', compact("channel", 'query', 'playlist'));
     }
 
     public function getChannel($id)
