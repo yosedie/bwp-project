@@ -108,7 +108,7 @@
 
         <!-- Tabel untuk menampilkan riwayat data berdasarkan data yg telah di SEE/Lihat -->
         <div class="row g-1">
-            @foreach ($visits as $i => $visit)
+            @foreach (Auth::user()->contentVisits->sortBy('updated_at') as $i => $visit)
                 <div class="col">
                     <div class="card mt-5 mx-2">
                         <div class="card_header">
