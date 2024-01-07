@@ -33,7 +33,7 @@ Route::get('/admin', function () {
 
 // show all users
 Route::get('/dashboard', [UserAdministrator::class, 'getUsers'])->name('dashboard');
-
+Route::get('/alladmin', [UserAdministrator::class, 'getUsers'])->name('alladmin');
 
 
 require __DIR__ . '/auth.php';
