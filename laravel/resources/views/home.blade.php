@@ -18,48 +18,52 @@
     {{-- nav --}}
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Dishub</a>
+            <a class="navbar-brand" >Dishub</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Channel</a>
+                        <a class="nav-link" href="channel">Channel</a>
                     </li>
-                    <li class="nav-item">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </li>
+                    
                 </ul>
+                
             </div>
         </div>
     </nav>
 
     {{-- card --}}
     <div class="container-fluid">
+    <br><br>
+        <div class="btn btn-danger border-black">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
+        </div>
 
         @foreach ($content as $item)
         <div class="card mt-5 mx-2">
             <div class="card-header">
-                {{ $item->title }}
+                {{ $item->channel_id }}
             </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">{{ $item->title }}</h5>
+                <p class="card-text">{{ $item->DESCRIPTION }}</p>
+                <a href="#" class="btn btn-primary">SEE</a>
             </div>
         </div>
         @endforeach
