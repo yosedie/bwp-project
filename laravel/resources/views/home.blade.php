@@ -43,30 +43,56 @@
     {{-- card --}}
     <div class="container-fluid">
     <br><br>
-        <div class="btn btn-danger border-black">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
+        <div class="flex">
+            <div class="btn btn-danger border-black">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
 
-                <x-dropdown-link :href="route('logout')"
-                    onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-dropdown-link>
+                    <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
+            </div>
+            <br><br>
+            <form action="{{ route('users')}}" method="get">
+            <div class="input-group">
+                <div class="form-outline" data-mdb-input-init>
+                  <input type="search" id="form1" name="query" class="form-control" placeholder="Search" value="{{$query}}">
+                </div>
+                <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
             </form>
         </div>
 
         @foreach ($content as $item)
-        <div class="card mt-5 mx-2">
-            <div class="card-header">
-                {{ $item->channel_id }}
+            <div class="card mt-5 mx-2">
+                <div class="card-header">
+                    {{ $item->channel_id }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $item->title }}</h5>
+                    <p class="card-text">{{ $item->DESCRIPTION }}</p>
+                    <a href="#" class="btn btn-primary">SEE</a>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ $item->title }}</h5>
-                <p class="card-text">{{ $item->DESCRIPTION }}</p>
-                <a href="#" class="btn btn-primary">SEE</a>
-            </div>
-        </div>
         @endforeach
+
+        {{-- @foreach ($comment as $com)
+            <div class="card mt-5 mx-2">
+                <div class="card-header">
+                    {{ $com->content_id }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $com->COMMENT }}</h5>
+                    <p class="card-text">{{ $com->STATUS }}</p>
+                    <a href="#" class="btn btn-primary">SEE</a>
+                </div>
+            </div>
+        @endforeach --}}
 
     </div>
 
