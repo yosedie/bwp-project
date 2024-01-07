@@ -96,6 +96,22 @@
         @endforeach
     </div>
 
+        <div class="row row-cols-2 g-1">
+                @foreach ($playlist as $sus)
+            <div class="col">
+                <div class="card text-bg-danger card mt-5 mx-2">
+                    <div class="card-header">
+                        {{ $sus->content_id }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $sus->title }}</h5>
+                        <p class="card-text">{{ $sus->created_at }}</p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
     <footer style="margin-top: 5%;">
         <div class="row p-5 bg-dark">
             <div class="col text-center text-light">
