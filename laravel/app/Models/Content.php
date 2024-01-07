@@ -41,4 +41,8 @@ class Content extends Model
     public function Suscribes() : HasMany {
         return $this->hasMany(Suscribe::class);
     }
+
+    public function ContentVisits(): HasMany {
+        return $this->hasMany(ContentVisit::class);
+    }
 }

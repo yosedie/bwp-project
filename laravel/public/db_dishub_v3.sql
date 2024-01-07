@@ -336,6 +336,22 @@ insert  into `watch_later`(`id`,`NAMES`,`user_id`,`content_id`,`created_at`,`upd
 (9,'Abstract Art Workshop',9,9,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (10,'Australian Wildlife Documentary',10,10,'2024-01-04 15:53:07','2024-01-04 15:53:07');
 
+DROP TABLE IF EXISTS `content_visits`;
+
+-- Dumping structure for table db_proyek_dishub.content_visits
+CREATE TABLE IF NOT EXISTS `content_visits` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `content_id` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+  PRIMARY KEY (`id`),
+  KEY `FK_user` (`user_id`),
+  KEY `FK_content` (`content_id`),
+  CONSTRAINT `FK_content` FOREIGN KEY (`content_id`) REFERENCES `contents` (`id`),
+  CONSTRAINT `FK_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
