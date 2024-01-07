@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,12 +53,29 @@ class UserAdministrator extends Controller
         return response()->json(['message' => 'User updated successfully']);
     }
     // deletev user
-    public function delete($id)
-    {
-        $user = User::find($id);
-        $user->delete();
+    // public function delete($id)
+    // {
+    //     $user = User::find($id);
+    //     $user->delete();
 
-        return response()->json(['message' => 'User deleted successfully']);
-    }
+    //     return response()->json(['message' => 'User deleted successfully']);
+    // }
+    // public function destroy($id)
+    // {
+    //     $user = User::find($id);
+    //     $user->delete();
+
+    //     return response()->json(['success' => 'User deleted successfully']);
+    // }
+
+    public function changeUserRole(Request $request, $id)
+{
+    $user = User::find($id);
+    $user->role = $request->input('role');
+    $user->save();
+
+    return response()->json(['message' => 'User role changed successfully']);
+}
+
 
 }
