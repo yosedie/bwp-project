@@ -32,8 +32,21 @@
 
     {{-- card --}}
     <div class="container-fluid">
-        <br><br>
-
+    <br><br>
+        <div class="flex">
+            <div class="row">
+                <div class="col">
+            <form action="{{ route('user')}}" method="get">
+            <div class="input-group">
+                <div class="form-outline" data-mdb-input-init>
+                  <input type="search" id="form1" name="query" class="form-control" placeholder="Search" value="{{$query}}">
+                </div>
+                <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+        </div>
         <div class="col d-flex justify-content-end">
             <div class="btn btn-danger border-black" style="text-decoration: none">
                 <form method="POST" action="{{ route('logout') }}">
@@ -45,9 +58,34 @@
                         {{ __('Log Out') }}
                     </x-dropdown-link>
                 </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+        <div class="row row-cols-5 g-0">
+            @foreach ($channel as $item)
+                <div class="col">
+                    <div class="card mt-5 mx-2">
+                        <div class="card-header">
+                            {{ $item->content_type }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->NAME }}</h5>
+                            <p class="card-text">{{ $item->DESCRIPTION }}</p>
+                            <span class="badge bg-primary">{{ $item->country }}</span>
+                            <p class="card-text text-muted">{{ $item->city }}</p>
+                            <ul class="list-group">
+                                <li class="list-group-item">Suscriber: {{ $item->suscribe }}</li>
+                                <li class="list-group-item">Followers: {{ $item->followers }}</li>
+                            </ul>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
 
     <footer style="margin-top: 5%;">
         <div class="row p-5 bg-dark">

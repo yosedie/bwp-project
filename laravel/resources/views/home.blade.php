@@ -91,7 +91,7 @@
                 </div>
             @endforeach
         </div>
-        
+
         <div class="row row-cols-2 g-1">
                 @foreach ($suscribe as $sus)
             <div class="col">
@@ -102,7 +102,6 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $sus->title }}</h5>
                         <p class="card-text">{{ $sus->created_at }}</p>
-                        <a href="#" class="btn btn-primary">See</a>
                     </div>
                 </div>
             </div>

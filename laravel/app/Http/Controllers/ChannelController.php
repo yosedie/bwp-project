@@ -8,10 +8,15 @@ use Illuminate\Http\Request;
 
 class ChannelController extends Controller
 {
-    public function getAllChannel()
+    public function getAllChannel(Request $request)
     {
-        $channel = Channel::all();
-        return view('channel', compact("channel"));
+        $query = $request->string('query')->trim();
+        if ($query) {
+            $channel = Channel::where('NAME', 'LIKE', '%'.$query.'%')->get();
+        } else {
+            $channel = Channel::all();
+        }
+        return view('channel', compact("channel", 'query'));
     }
 
     public function getChannel($id)
