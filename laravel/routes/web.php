@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
 Route::get('/home', [ContentController::class, 'getAllContent'])->middleware(['auth', 'verified'])->name('users');
-Route::get('/channel', [ChannelController::class, 'getAllChannel'])->middleware(['auth', 'verified'])->name('users');
+Route::get('/channel', [ChannelController::class, 'getAllChannel'])->middleware(['auth', 'verified'])->name('user');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
