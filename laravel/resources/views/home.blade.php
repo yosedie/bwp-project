@@ -81,21 +81,12 @@
             </div>
         @endforeach
 
-        {{-- @foreach ($comment as $com)
-            <div class="card mt-5 mx-2">
-                <div class="card-header">
-                    {{ $com->content_id }}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $com->COMMENT }}</h5>
-                    <p class="card-text">{{ $com->STATUS }}</p>
-                    <a href="#" class="btn btn-primary">SEE</a>
-                </div>
-            </div>
-        @endforeach --}}
+        <!-- Tabel untuk menampilkan riwayat data berdasarkan data yg telah di SEE/Lihat -->
+
 
     </div>
 
 </body>
 
 </html>
+        
