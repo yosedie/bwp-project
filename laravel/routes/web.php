@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserAdministrator;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 Route::get('/home', [ContentController::class, 'getAllContent'])->middleware(['auth', 'verified'])->name('users');
+Route::get('/channel', [ChannelController::class, 'getAllChannel'])->middleware(['auth', 'verified'])->name('users');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
