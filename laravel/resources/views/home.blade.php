@@ -51,10 +51,10 @@
     {{-- card --}}
     <div class="container-fluid">
 
-        {{-- @foreach ($content as $item) --}}
+        @foreach ($content as $item)
         <div class="card mt-5 mx-2">
             <div class="card-header">
-                {{-- {{ $item->title }} --}}
+                {{ $item->title }}
             </div>
             <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
@@ -62,7 +62,7 @@
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>
-        {{-- @endforeach --}}
+        @endforeach
 
     </div>
 

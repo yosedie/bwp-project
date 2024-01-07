@@ -32,11 +32,7 @@ Route::get('/admin', function () {
     return view('admin.home');
 })->middleware(['auth', 'verified', 'admin'])->name('admin');
 
-Route::resource('/home', ContentController::class);
-
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('users');
+Route::get('/home', [ContentController::class, 'getAllContent'])->middleware(['auth', 'verified'])->name('users');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
