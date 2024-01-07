@@ -63,7 +63,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $item->title }}</h5>
                 <p class="card-text">{{ $item->DESCRIPTION }}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">SEE</a>
             </div>
         </div>
         @endforeach
