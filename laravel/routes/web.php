@@ -31,11 +31,11 @@ Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'admin'])->name('admin');
 
-// show all users
+// show all usersn
 Route::get('/admin', [UserAdministrator::class, 'getUsers'])->name('dashboard');
 
 // delete users
-Route::delete('/admin/users/{id}', [UserAdministrator::class, 'destroyUser'])->name('admin.users.destroy');
+Route::get('/delete/{id}', [UserAdministrator::class, 'delete'])->name('delete');
 // Route::get('/alladmin', [UserAdministrator::class, 'getUsers'])->name('alladmin');
 
 

@@ -49,14 +49,13 @@ class UserAdministrator extends Controller
             'role' => $request->input('role'),
         ]);
 
-        // delete user
-
         return response()->json(['message' => 'User updated successfully']);
     }
-    public function destroyUser($id)
+    // deletev user
+    public function delete($id)
     {
-        // Find the user by ID and delete
-        User::destroy($id);
+        $user = User::find($id);
+        $user->delete();
 
         return response()->json(['message' => 'User deleted successfully']);
     }
