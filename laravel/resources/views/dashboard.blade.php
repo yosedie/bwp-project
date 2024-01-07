@@ -32,6 +32,8 @@
         <button type="submit">Create User</button>
     </form>
 
+
+    @isset($users)
     <table class="table table-striped">
         <thead>
             <tr>
@@ -53,22 +55,24 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->created_at}}</td>
                         <td>{{ $item->updated_at}}</td>
-                        {{-- <td>
-                            <!-- Add a button (or multiple buttons) here -->
-                            <a href="{{ route('edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ route('delete', $item->id) }}" class="btn btn-danger">Delete</a>
-                            <!-- Add more buttons as needed -->
-                        </td> --}}
+                        <td>
+                            <!-- Add a "Delete" button with a data-user-id attribute -->
+                            <button class="delete-user btn btn-danger" data-user-id="{{ $item->id }}">Delete</button>
+                        </td>
                     </tr>
                 @endif
             @endforeach
         </tbody>
     </table>
+    @else
+        <p>No users available.</p>
+    @endisset
+
 </div>
 </x-app-layout>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function()) {
         // Ajax request to create a user
         $('#create-user-form').submit(function(event) {
             event.preventDefault();
@@ -109,6 +113,23 @@
                 }
             });
         });
+        // Ajax request to delete a user
+        $('.delete-user').click(function() {
+    var userId = $(this).data('user-id');
+
+    if (confirm('Are you sure you want to delete this user?')) {
+        $.ajax({
+            url: '/admin/users/' + userId,
+            method: 'DELETE',
+            success: function(response) {
+                console.log(response.message);
+                // Add logic to refresh the users list or show success message
+            },
+            error: function(error) {
+                console.error('Error deleting user:', error.responseJSON);
+            }
+        });
+    }
     });
 </script>
 </body>

@@ -12,7 +12,6 @@ class UserAdministrator extends Controller
     {
         $users = User::all();
         return view('dashboard', compact('users'));
-
     }
     public function store(Request $request)
     {
@@ -50,7 +49,16 @@ class UserAdministrator extends Controller
             'role' => $request->input('role'),
         ]);
 
+        // delete user
+
         return response()->json(['message' => 'User updated successfully']);
+    }
+    public function destroy($id)
+    {
+        // Find the user by ID and delete
+        User::destroy($id);
+
+        return response()->json(['message' => 'User deleted successfully']);
     }
 
 }

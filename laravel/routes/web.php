@@ -32,8 +32,11 @@ Route::get('/admin', function () {
 })->middleware(['auth', 'verified', 'admin'])->name('admin');
 
 // show all users
-Route::get('/dashboard', [UserAdministrator::class, 'getUsers'])->name('dashboard');
-Route::get('/alladmin', [UserAdministrator::class, 'getUsers'])->name('alladmin');
+Route::get('/admin', [UserAdministrator::class, 'getUsers'])->name('dashboard');
+
+// delete users
+Route::delete('/admin/users/{id}', [UserAdministrator::class, 'destroy'])->name('admin.users.destroy');
+// Route::get('/alladmin', [UserAdministrator::class, 'getUsers'])->name('alladmin');
 
 
 require __DIR__ . '/auth.php';
