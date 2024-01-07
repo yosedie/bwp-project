@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Content;
 use App\Models\PlayList;
 use App\Models\Suscribe;
+use App\Models\User;
 use App\Models\WatchLater;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,15 @@ class ContentController extends Controller
             $content = Content::all();
         }
         $suscribe = Suscribe::all();
-        $visits = auth()->user()->contentvisits->sortBy('updated_at');
-        return view('home', compact('content', 'query', 'suscribe', 'visits'));
+        return view('home', compact('content', 'query', 'suscribe'));
     }
 
+    public function getContent($id)
+    {
+        $contents = Content::where('id', $id)->first();
+        $comments = Comment::where('content_id', $id)->first();
+        $watchlater = WatchLater::where('content_id', $id)->first();
+        $user = User::where('id', $comments->user_id)->first();
+        return view('detail', compact('contents', 'comments', 'user', 'watchlater'));
+    }
 }

@@ -43,7 +43,7 @@
                                 <input type="search" id="form1" name="query" class="form-control"
                                     placeholder="Search" value="{{ $query }}">
                             </div>
-                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                            <button type="submit" class="btn btn-warning" data-mdb-ripple-init>
                                 <i class="fas fa-search">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1"
@@ -71,21 +71,19 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="row row-cols-5 g-4">
             @foreach ($content as $item)
                 <div class="col">
-                    <div class="card mt-5 mx-2">
+                    <div class="card text-bg-info mt-5 mx-2">
                         <div class="card-header">
-                            {{ $item->channel_id }}
+                            Content Number: {{ $item->id }}
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->title }}</h5>
                             <p class="card-text">{{ $item->DESCRIPTION }}</p>
-                            <a href="#" class="btn btn-primary">See</a>
+                            <a href="{{ route('detail', ['id' => $item['id']]) }}" class="btn btn-primary">See</a>
                         </div>
                     </div>
                 </div>
@@ -93,19 +91,19 @@
         </div>
 
         <div class="row row-cols-2 g-1">
-                @foreach ($suscribe as $sus)
-            <div class="col">
-                <div class="card mt-5 mx-2">
-                    <div class="card-header">
-                        {{ $sus->content_id }}
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $sus->title }}</h5>
-                        <p class="card-text">{{ $sus->created_at }}</p>
+            @foreach ($suscribe as $sus)
+                <div class="col">
+                    <div class="card text-bg-success mt-5 mx-2">
+                        <div class="card-header">
+                            Subscribe Number: {{ $sus->content_id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $sus->title }}</h5>
+                            <p class="card-text">{{ $sus->created_at }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
         </div>
 
         <!-- Tabel untuk menampilkan riwayat data berdasarkan data yg telah di SEE/Lihat -->
@@ -129,7 +127,7 @@
         <footer style="margin-top: 5%;">
             <div class="row p-5 bg-dark">
                 <div class="col text-center text-light">
-                    <h3>test</h3>
+                    <h3>Currently user: {{ Auth::user()->name }}</h3>
                 </div>
             </div>
         </footer>
