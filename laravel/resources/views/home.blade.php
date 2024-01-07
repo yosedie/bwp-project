@@ -43,18 +43,29 @@
     {{-- card --}}
     <div class="container-fluid">
     <br><br>
-        <div class="btn btn-danger border-black">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
+        <div class="flex">
+            <div class="btn btn-danger border-black">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
 
-                <x-dropdown-link :href="route('logout')"
-                    onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-dropdown-link>
+                    <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
+            </div>
+            <form action="{{ route('users')}}" method="get">
+            <div class="input-group">
+                <div class="form-outline" data-mdb-input-init>
+                  <input type="search" id="form1" name="query" class="form-control" placeholder="Search" value="{{$query}}">
+                </div>
+                <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
             </form>
         </div>
-
         @foreach ($content as $item)
         <div class="card mt-5 mx-2">
             <div class="card-header">

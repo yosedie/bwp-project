@@ -17,6 +17,6 @@ class ContentController extends Controller
             $content = Content::all();
         }
         
-        return view('home', compact('content'));
+        return view('home', compact('content', 'query'));
     }
 }
