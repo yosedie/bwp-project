@@ -18,18 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
-Route::get('/AddAdmin', function () {
-    return view('admin.AddAdmin');
-});
-Route::get('/Admins', function () {
-    return view('admin.home');
-});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
 Route::get('/admin', function () {
-    return view('admin.home');
+    return view('dashboard');
 })->middleware(['auth', 'verified', 'admin'])->name('admin');
 
 Route::get('/home', [ContentController::class, 'getAllContent'])->middleware(['auth', 'verified'])->name('users');
