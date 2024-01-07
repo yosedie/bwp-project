@@ -55,6 +55,7 @@
                     </x-dropdown-link>
                 </form>
             </div>
+            <br><br>
             <form action="{{ route('users')}}" method="get">
             <div class="input-group">
                 <div class="form-outline" data-mdb-input-init>
@@ -66,18 +67,32 @@
               </div>
             </form>
         </div>
+
         @foreach ($content as $item)
-        <div class="card mt-5 mx-2">
-            <div class="card-header">
-                {{ $item->channel_id }}
+            <div class="card mt-5 mx-2">
+                <div class="card-header">
+                    {{ $item->channel_id }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $item->title }}</h5>
+                    <p class="card-text">{{ $item->DESCRIPTION }}</p>
+                    <a href="#" class="btn btn-primary">SEE</a>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ $item->title }}</h5>
-                <p class="card-text">{{ $item->DESCRIPTION }}</p>
-                <a href="#" class="btn btn-primary">SEE</a>
-            </div>
-        </div>
         @endforeach
+
+        {{-- @foreach ($comment as $com)
+            <div class="card mt-5 mx-2">
+                <div class="card-header">
+                    {{ $com->content_id }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $com->COMMENT }}</h5>
+                    <p class="card-text">{{ $com->STATUS }}</p>
+                    <a href="#" class="btn btn-primary">SEE</a>
+                </div>
+            </div>
+        @endforeach --}}
 
     </div>
 
