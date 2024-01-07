@@ -18,13 +18,13 @@
     {{-- nav --}}
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" >Dishub</a>
+            <a class="navbar-brand">Dishub</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -33,53 +33,73 @@
                     <li class="nav-item">
                         <a class="nav-link" href="channel">Channel</a>
                     </li>
-                    
+
                 </ul>
-                
+
             </div>
         </div>
     </nav>
 
     {{-- card --}}
     <div class="container-fluid">
-    <br><br>
+        <br><br>
         <div class="flex">
-            <div class="btn btn-danger border-black">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-dropdown-link>
-                </form>
-            </div>
-            <br><br>
-            <form action="{{ route('users')}}" method="get">
-            <div class="input-group">
-                <div class="form-outline" data-mdb-input-init>
-                  <input type="search" id="form1" name="query" class="form-control" placeholder="Search" value="{{$query}}">
+            <div class="row">
+                <div class="col">
+                    <form action="{{ route('users') }}" method="get">
+                        <div class="input-group">
+                            <div class="form-outline" data-mdb-input-init>
+                                <input type="search" id="form1" name="query" class="form-control"
+                                    placeholder="Search" value="{{ $query }}">
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                                <i class="fas fa-search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1"
+                                        viewBox="0 0 488.4 488.4" xml:space="preserve">
+                                        <path
+                                            d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z"
+                                            class="fill-black group-hover:fill-warna-50 duration-300" />
+                                    </svg>
+                                </i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </form>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn btn-danger border-black" style="text-decoration: none">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')" style="text-decoration: none" class="text-light"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
-        @foreach ($content as $item)
-            <div class="card mt-5 mx-2">
-                <div class="card-header">
-                    {{ $item->channel_id }}
+        <div class="row row-cols-5 g-4">
+            @foreach ($content as $item)
+                <div class="col">
+                    <div class="card mt-5 mx-2">
+                        <div class="card-header">
+                            {{ $item->channel_id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->title }}</h5>
+                            <p class="card-text">{{ $item->DESCRIPTION }}</p>
+                            <a href="#" class="btn btn-primary">See</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $item->title }}</h5>
-                    <p class="card-text">{{ $item->DESCRIPTION }}</p>
-                    <a href="#" class="btn btn-primary">SEE</a>
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
 
         <!-- Tabel untuk menampilkan riwayat data berdasarkan data yg telah di SEE/Lihat -->
 
@@ -89,4 +109,3 @@
 </body>
 
 </html>
-        
