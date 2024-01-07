@@ -56,8 +56,9 @@
                         <td>{{ $item->created_at}}</td>
                         <td>{{ $item->updated_at}}</td>
                         <td>
-                            <!-- Add a "Delete" button with a data-user-id attribute -->
+
                             <button class="delete-user btn btn-danger" data-user-id="{{ $item->id }}">Delete</button>
+                            <button class="delete-user btn btn-primary" data-user-id="{{ $item->id }}">Update</button>
                         </td>
                     </tr>
                 @endif

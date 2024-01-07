@@ -35,7 +35,7 @@ Route::get('/admin', function () {
 Route::get('/admin', [UserAdministrator::class, 'getUsers'])->name('dashboard');
 
 // delete users
-Route::delete('/admin/users/{id}', [UserAdministrator::class, 'destroy'])->name('admin.users.destroy');
+Route::delete('/admin/users/{id}', [UserAdministrator::class, 'destroyUser'])->name('admin.users.destroy');
 // Route::get('/alladmin', [UserAdministrator::class, 'getUsers'])->name('alladmin');
 
 

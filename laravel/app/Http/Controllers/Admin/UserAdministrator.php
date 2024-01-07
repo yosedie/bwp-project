@@ -53,7 +53,7 @@ class UserAdministrator extends Controller
 
         return response()->json(['message' => 'User updated successfully']);
     }
-    public function destroy($id)
+    public function destroyUser($id)
     {
         // Find the user by ID and delete
         User::destroy($id);
