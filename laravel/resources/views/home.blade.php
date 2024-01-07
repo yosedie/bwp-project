@@ -91,7 +91,7 @@
         </div>
 
         <div class="row row-cols-2 g-1">
-            @foreach ($suscribe as $sus)
+            @foreach (Auth::user()->suscribes as $sus)
                 <div class="col">
                     <div class="card text-bg-success mt-5 mx-2">
                         <div class="card-header">

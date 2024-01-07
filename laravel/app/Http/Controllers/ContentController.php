@@ -28,8 +28,7 @@ class ContentController extends Controller
         } else {
             $content = Content::all();
         }
-        $suscribe = Suscribe::all();
-        return view('home', compact('content', 'query', 'suscribe'));
+        return view('home', compact('content', 'query'));
     }
 
     public function getContent($id)
