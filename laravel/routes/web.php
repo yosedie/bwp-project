@@ -22,6 +22,7 @@ Route::get('/', function () {
 });
 // Route::get('/home', [ContentController::class, 'index']);
 Route::get('/home', [ContentController::class, 'getAllContent'])->middleware(['auth', 'verified'])->name('users');
+Route::get('/detail/{id}', [ContentController::class, 'getContent'])->middleware(['auth', 'verified'])->name('detail');
 Route::get('/channel', [ChannelController::class, 'getAllChannel'])->middleware(['auth', 'verified'])->name('user');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
