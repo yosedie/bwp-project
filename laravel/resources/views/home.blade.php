@@ -103,7 +103,13 @@
 
         <!-- Tabel untuk menampilkan riwayat data berdasarkan data yg telah di SEE/Lihat -->
 
-
+        <footer style="margin-top: 5%;">
+            <div class="row p-5 bg-dark">
+                <div class="col text-center text-light">
+                    <h3>test</h3>
+                </div>
+            </div>
+        </footer>
     </div>
 
 </body>
