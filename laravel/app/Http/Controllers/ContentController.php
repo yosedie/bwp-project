@@ -28,7 +28,8 @@ class ContentController extends Controller
             $content = Content::all();
         }
         $suscribe = Suscribe::all();
-        return view('home', compact('content', 'query','suscribe'));
+        $visits = auth()->user()->contentvisits->sortBy('updated_at');
+        return view('home', compact('content', 'query', 'suscribe', 'visits'));
     }
 
 }

@@ -109,6 +109,22 @@
         </div>
 
         <!-- Tabel untuk menampilkan riwayat data berdasarkan data yg telah di SEE/Lihat -->
+        <div class="row g-1">
+            @foreach ($visits as $i => $visit)
+                <div class="col">
+                    <div class="card mt-5 mx-2">
+                        <div class="card_header">
+                            {{ $i }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $visit->content->title }}</h5>
+                            <p class="card-text">{{ $visit->updated_at }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
 
         <footer style="margin-top: 5%;">
             <div class="row p-5 bg-dark">
