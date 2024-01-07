@@ -123,7 +123,7 @@
     // Handle "Delete" button click
     $('.delete-user').on('click', function() {
         var id = $(this).data('user-id');
-//jhvjh
+
         // Make AJAX request to change user role
         $.ajax({
             url: '/changeUserRole/' + id,
