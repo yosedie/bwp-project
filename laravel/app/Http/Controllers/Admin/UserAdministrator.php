@@ -33,76 +33,52 @@ class UserAdministrator extends Controller
 
         return response()->json(['message' => 'User created successfully']);
     }
-    // public function update(Request $request, $id)
+
+
+    // public function updateUser(Request $request)
     // {
-    // // Validate the request
+    //     // Validate the request
     //     $request->validate([
     //         'name' => 'required',
-    //         'email' => 'required|email|unique:users,email,' . $id,
-    //         'role' => 'required',
+    //         'email' => 'required|email',
+    //         // Add more validation rules as needed
     //     ]);
-
-    // // Update the user
-    //     $user = User::find($id);
+    //     // Get the user ID from the request if needed
+    //     $userId = $request->input('user_id');
+    //     // Find the user
+    //     $user = User::findOrFail($userId);
+    //     // Update user data
     //     $user->update([
     //         'name' => $request->input('name'),
     //         'email' => $request->input('email'),
-    //         'role' => $request->input('role'),
+    //         // Add more fields as needed
     //     ]);
-
     //     return response()->json(['message' => 'User updated successfully']);
     // }
-    // deletev user
-    // public function delete($id)
-    // {
-    //     $user = User::find($id);
-    //     $user->delete();
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('update-user', compact('user'));
+    }
 
-    //     return response()->json(['message' => 'User deleted successfully']);
-    // }
-    // public function destroy($id)
-    // {
-    //     $user = User::find($id);
-    //     $user->delete();
-
-    //     return response()->json(['success' => 'User deleted successfully']);
-    // }
-/**
-     * Update the specified resource in storage.
-     *
-     *
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     $user = user::findOrFail($id);
-    //     // $data->name = $request->name;
-    //     $user->update([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'role' => $request->role,
-    //         ]);
-    //     $user->save();
-    // }
-
-
-    public function updateUser(Request $request)
+    public function update(Request $request, $id)
     {
         // Validate the request
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            // Add more validation rules as needed
         ]);
-        // Get the user ID from the request if needed
-        $userId = $request->input('user_id');
+
         // Find the user
-        $user = User::findOrFail($userId);
+        $user = User::findOrFail($id);
+
         // Update user data
         $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             // Add more fields as needed
         ]);
+
         return response()->json(['message' => 'User updated successfully']);
     }
     public function changeUserRole(Request $request, $id)
