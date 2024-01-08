@@ -26,4 +26,32 @@ class ChannelController extends Controller
         $channels = Channel::where('id', $id)->get();
         return view('channel', compact('channel'));
     }
+    
+    public function subscribeChannel($id)
+    {
+        $channel = Channel::find($id);
+
+        if ($channel) {
+            // Logika untuk menambah jumlah subscriber
+            $channel->increment('suscribe');
+
+            return redirect()->back()->with('success', 'You have subscribed to this channel.');
+        }
+
+        return redirect()->back()->with('error', 'Channel not found.');
+    }
+
+    public function followChannel($id)
+    {
+        $channel = Channel::find($id);
+
+        if ($channel) {
+            // Logika untuk menambah jumlah followers
+            $channel->increment('followers');
+
+            return redirect()->back()->with('success', 'You are now following this channel.');
+        }
+
+        return redirect()->back()->with('error', 'Channel not found.');
+    }
 }

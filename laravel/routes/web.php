@@ -24,6 +24,16 @@ Route::get('/', function () {
 Route::get('/home', [ContentController::class, 'getAllContent'])->middleware(['auth', 'verified'])->name('users');
 Route::get('/detail/{id}', [ContentController::class, 'getContent'])->middleware(['auth', 'verified'])->name('detail');
 Route::get('/channel', [ChannelController::class, 'getAllChannel'])->middleware(['auth', 'verified'])->name('user');
+
+// Menampilkan detail channel
+Route::get('/channel/{id}', [ChannelController::class, 'getChannel'])->name('channel.detail');
+
+// Aksi subscribe channel
+Route::post('/subscribe/{id}', [ChannelController::class, 'subscribeChannel'])->name('subscribe.channel');
+
+// Aksi follow channel
+Route::post('/follow/{id}', [ChannelController::class, 'followChannel'])->name('follow.channel');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

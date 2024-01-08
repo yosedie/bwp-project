@@ -110,7 +110,7 @@
         <div class="row g-1">
             @foreach (Auth::user()->contentVisits->sortBy('updated_at') as $i => $visit)
                 <div class="col">
-                    <div class="card mt-5 mx-2">
+                    <div class="card text-bg-dark mt-5 mx-2">
                         <div class="card-header">
                             {{ $i }}
                         </div>
@@ -122,7 +122,7 @@
                 </div>
             @endforeach
         </div>
-        
+
 
         <footer style="margin-top: 5%;">
             <div class="row p-5 bg-dark">

@@ -90,6 +90,17 @@
                             <li class="list-group-item">Followers: {{ $item->followers }}</li>
                         </ul>
                         <br>
+                        <!-- Tombol untuk menambah jumlah subscriber -->
+                        <form action="{{ route('subscribe.channel', ['id' => $item->id]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </form>
+
+                        <!-- Tombol untuk follow -->
+                        <form action="{{ route('follow.channel', ['id' => $item->id]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success">Follow</button>
+                        </form>
                     </div>
                 </div>
             </div>
