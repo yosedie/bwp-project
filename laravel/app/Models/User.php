@@ -77,7 +77,7 @@ class User extends Authenticatable
         return $this->hasMany(ContentVisit::class);
     }
     
-    public function getRedirectRoute()
+    public function getRedirectRoute() : string
     {
         if ($this->role == 'admin') {
             return 'admin';
