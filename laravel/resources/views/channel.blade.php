@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-  {{-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> --}}
+    {{-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <style>
@@ -100,44 +100,50 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row row-cols-5 g-0">
-        @foreach ($channel as $item)
-            <div class="col">
-                <div class="card text-bg-secondary mt-5 mx-2">
-                    <div class="card-header">
-                        {{ $item->content_type }}
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $item->NAME }}</h5>
-                        <p class="card-text">{{ $item->DESCRIPTION }}</p>
-                        <span class="badge bg-primary">{{ $item->country }}</span>
-                        <p class="badge bg-danger">{{ $item->city }}</p>
-                        <ul class="list-group">
-                            <li class="list-group-item">Suscriber: {{ $item->suscribe }}</li>
-                            <li class="list-group-item">Followers: {{ $item->followers }}</li>
-                        </ul>
-                        <br>
-                        <!-- Tombol untuk menambah jumlah subscriber -->
-                        <form action="{{ route('subscribe.channel', ['id' => $item->id]) }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">Subscribe</button>
-                        </form>
-                        <br>
-                        <!-- Tombol untuk follow -->
-                        <form action="{{ route('follow.channel', ['id' => $item->id]) }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-success">Follow</button>
-                        </form>
+        <div class="row row-cols-5 g-0">
+            @foreach ($channel as $item)
+                <div class="col">
+                    <div class="card text-bg-secondary mt-5 mx-2">
+                        <div class="card-header text-center text-bold">
+                            {{ $item->content_type }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-bold">{{ $item->NAME }}</h5>
+                            <p class="card-text fst-italic">{{ $item->DESCRIPTION }}</p>
+                            <p class="badge bg-primary">{{ $item->country }}</p>
+                            <p class="badge bg-danger">{{ $item->city }}</p>
+                            <ul class="list-group">
+                                <li class="list-group-item">Suscriber: {{ $item->suscribe }}</li>
+                                <li class="list-group-item">Followers: {{ $item->followers }}</li>
+                            </ul>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <form action="{{ route('subscribe.channel', ['id' => $item->id]) }}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary"
+                                            style="width:100%">Subscribe</button>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <form action="{{ route('follow.channel', ['id' => $item->id]) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success"
+                                            style="width:100%">Follow</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 
-        <div class="row row-cols-2 g-1">
-                @foreach ($playlist as $sus)
+    <div class="row row-cols-2 g-1">
+        @foreach ($playlist as $sus)
             <div class="col">
                 <div class="card text-bg-danger card mt-5 mx-2">
                     <div class="card-header">
@@ -149,8 +155,8 @@
                     </div>
                 </div>
             </div>
-            @endforeach
-        </div>
+        @endforeach
+    </div>
 
     <footer style="margin-top: 5%;">
         <div class="row p-5 bg-dark">
