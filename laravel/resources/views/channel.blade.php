@@ -13,10 +13,31 @@
   {{-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <style>
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
 
 </head>
 
 <body>
+    {{-- <button onclick="document.body.classList.toggle('dark-mode')">Toggle Dark Mode</button> --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (localStorage.getItem('dark-mode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        document.body.addEventListener('click', function () {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+        });
+    </script>
+
     {{-- nav --}}
     <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
