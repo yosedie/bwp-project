@@ -111,8 +111,19 @@ class UserAdministrator extends Controller
         $user->role = $request->input('role');
         $user->save();
 
+
         return response()->json(['message' => 'User role changed successfully']);
     }
 
+    public function create(Request $request, $id)
+    {
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'role' => $request->input('role'),
+        ]);
 
+        return response()->json(['message' => 'User role changed successfully']);
+    }
 }

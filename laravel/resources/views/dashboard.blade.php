@@ -29,12 +29,13 @@
             </div>
         </div>
     </div>
-    <form id="create-user-form">
-        <!-- Add your input fields for name, email, password, role, etc. -->
-        <button type="submit">Create User</button>
-    </form>
-
-
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"style="color:white; background-color: blue;">
+    Retrive User
+  </button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"style="color:white; background-color: blue;">
+    All Admin
+  </button>
     @isset($users)
     <table class="table table-striped">
         <thead>
@@ -57,6 +58,7 @@
                         <td>{{ $item->updated_at}}</td>
                         <td>
 
+
                             <a href="javascript:void(0)" class="delete-user btn btn-danger" data-user-id="{{ $item->id }}">
                                 Delete
                             </a>
@@ -66,6 +68,16 @@
                             data-bs-target="#exampleModal"
                             style="color:white; background-color: blue;">Update</button>
 
+                             {{-- <a href="javascript:void(0)"
+                   class="delete-user btn btn-danger"
+                   data-user-id="{{ $item->id }}">
+                    Delete</a> --}}
+
+
+                            {{-- <a href="/delete/{{$item->id}}" class="delete-user btn btn-primary">Update</a> --}}
+                            {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="create()">
+                                Update
+                              </button> --}}
                         </td>
                     </tr>
                 @endif
@@ -77,9 +89,16 @@
     @endisset
 
 
-  <!-- Modal -->
+    <!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> --}}
+
+
+  <!-- Modal update-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
@@ -115,9 +134,114 @@
             </div>
         </div>
     </div>
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div id="page" class="p-2"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
+  <!-- Modal retrieve user-->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLabel"><b>Retrieve User</b></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            @isset($users)
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>updated_at</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $item)
+                        @if ($item->role == 'off')
+                            <tr id="sid{{$item->id}}">
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
 
+                                <td>{{ $item->updated_at}}</td>
+                                <td>
+                                    <a href="javascript:void(0)" class="retrive-user btn btn-danger" data-user-id="{{ $item->id }}">
+                                        Retrieve
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+            @else
+                <p>No users available.</p>
+            @endisset
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color:white; background-color: gray;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLabel"><b>Retrieve User</b></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            @isset($users)
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>updated_at</th>
+                        <
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $item)
+                        @if ($item->role == 'admin')
+                            <tr id="sid{{$item->id}}">
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+
+                                <td>{{ $item->updated_at}}</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+            @else
+                <p>No users available.</p>
+            @endisset
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color:white; background-color: gray;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </x-app-layout>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -164,100 +288,7 @@
         });
     });
 
-    // Ajax request to delete a user
-    // Handle "Delete" button click
 
-    // $('#updateUserRoleBtn').on('click', function() {
-    //     var id = $(this).data('user-id');
-
-    //     // Make AJAX request to change user role
-    //     $.ajax({
-    //         url: '/changeUserRole/' + id,
-    //         method: 'POST',
-    //         data: { role: 'off' },
-    //         success: function(response) {
-    //             console.log(response.message);
-    //             // Optionally, refresh the users list or show success message
-    //             fetchAndDisplayUsers();
-    //         },
-    //         error: function(error) {
-    //             console.error('Error changing user role:', error.responseJSON);
-    //         }
-    //     });
-    // });
-    // function create() {
-    // $.get("{{ url('create') }}", {}, function (data, status) {
-
-    //     $('#page').html(data);
-    //     $('#exampleModal').modal('show');
-    // });
-    // function create() {
-    //     var name = $("#name").val();
-    //     $.ajax({
-    //         type: "method",
-    //         url: "url",
-    //         data: "data",
-    //         dataType: "dataType",
-    //         success: function (response) {
-
-    //         }
-    //     });
-
-
-
-    // Untuk modal halaman edit show
-    // function show(id) {
-    //         $.get("{{ url('show') }}/" + id, {}, function(data, status) {
-    //             $("#exampleModalLabel").html('Edit Product')
-    //             $("#page").html(data);
-    //             $("#exampleModal").modal('show');
-    //         });
-    //     }
-
-        // untuk proses update data
-        // function update(id) {
-        //     var name = $("#name").val();
-        //     $.ajax({
-        //         type: "get",
-        //         url: "{{ url('update') }}/" + id,
-        //         data: "name=" + name,
-        //         success: function(data) {
-        //             $(".btn-close").click();
-        //             read()
-        //         }
-        //     });
-        // }
-        // $('#updateUserRoleBtn').on('click', function() {
-        // var userId = $(this).data('user-id');
-        // // Make AJAX request to update user role
-        //     $.ajax({
-        //         url: '/updateUserRole/' + userId,
-        //         method: 'POST',
-        //         data: { role: 'off' },
-        //         success: function(response) {
-        //             console.log(response.message);
-        //             // Optionally, show success message or perform other actions
-        //             // Refresh the users list after updating the role
-        //             fetchAndDisplayUsers();
-        //         },
-        //         error: function(error) {
-        //             console.error('Error updating user role:', error.responseJSON);
-        //         }
-        //     });
-        // });
-        // function fetchAndDisplayUsers() {
-        //         $.ajax({
-        //             url: '/getUsers', // Replace with the appropriate route to fetch users
-        //             method: 'GET',
-        //             success: function(response) {
-        //                 // Update the user list on the dashboard
-        //                 $('#user-list').html(response);
-        //             },
-        //             error: function(error) {
-        //                 console.error('Error fetching users:', error.responseJSON);
-        //             }
-        //         });
-        // }
         $('.delete-user').on('click', function() {
             var userId = $(this).data('user-id');
 
@@ -283,7 +314,54 @@
                 }
             });
         });
+        $('.retrive-user').on('click', function() {
+            var userId = $(this).data('user-id');
 
+            // Get CSRF token from the meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Make AJAX request to change user role
+            $.ajax({
+                url: '/changeUserRole/' + userId,
+                method: 'POST',
+                data: {
+                    role: 'user',
+                    // Include CSRF token in the request
+                    _token: csrfToken
+                },
+                success: function(response) {
+                    console.log(response.message);
+                    // Optionally, refresh the users list or show success message
+                    fetchAndDisplayUsers();
+                    $('#exampleModal1').modal('hide');fetchAndDisplayUsers();
+                },
+                error: function(error) {
+                    console.error('Error changing user role:', error.responseJSON);
+                }
+            });
+        });
+        $('#updateUserBtn').click(function() {
+            function updateUser() {
+            // Collect form data
+            var formData = $('#update-user-form').serialize();
+            // Make Ajax request
+            $.ajax({
+                url: $('#update-user-form').attr('action'), // Use the form action URL
+                method: 'POST',
+                data: formData,
+                success: function (response) {
+                    console.log(response.message);
+                    // Optionally, show success message or perform other actions
+                    // For example, close the modal
+                    fetchAndDisplayUsers();
+                    $('#exampleModal').modal('hide');fetchAndDisplayUsers();
+                },
+                error: function (error) {
+                    console.error('Error updating user:', error.responseJSON);
+                }
+                });
+            }
+        });
         function fetchAndDisplayUsers() {
             $.ajax({
                 url: '/getUsers',
@@ -297,31 +375,11 @@
                 }
             });
         }
-        $('#updateUserBtn').click(function() {
-            updateUser();
-        });
-        function updateUser() {
-            // Collect form data
-            var formData = $('#update-user-form').serialize();
 
-            // Make Ajax request
-            $.ajax({
-                url: $('#update-user-form').attr('action'), // Use the form action URL
-                method: 'POST',
-                data: formData,
-                success: function (response) {
-                    console.log(response.message);
-                    // Optionally, show success message or perform other actions
-                    // For example, close the modal
-                    $('#exampleModal').modal('hide');fetchAndDisplayUsers();
-                },
-                error: function (error) {
-                    console.error('Error updating user:', error.responseJSON);
-                }
-            });
-        }
 
-    });
+});
+
+
 </script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="custom-script.js"></script>
