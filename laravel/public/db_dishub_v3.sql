@@ -37,7 +37,7 @@ CREATE TABLE `channels` (
 
 /*Data for the table `channels` */
 
-insert  into `channels`(`id`,`NAME`,`DESCRIPTION`,`city`,`country`,`gender`,`content_type`,`suscribe`,`followers`,`created_at`,`updated_at`) values 
+insert  into `channels`(`id`,`NAME`,`DESCRIPTION`,`city`,`country`,`gender`,`content_type`,`suscribe`,`followers`,`created_at`,`updated_at`) values
 (1,'Tech Explorers','Exploring the latest in technology','San Francisco','USA','Mixed','Technology',5000,20000,'2024-01-04 15:51:57','2024-01-04 15:51:57'),
 (2,'Travel Adventures','Discovering new places around the world','Paris','France','Mixed','Travel',3000,15000,'2024-01-04 15:51:57','2024-01-04 15:51:57'),
 (3,'Foodies Delight','A journey through delicious cuisines','New York','USA','Mixed','Food',7000,25000,'2024-01-04 15:51:57','2024-01-04 15:51:57'),
@@ -90,7 +90,7 @@ CREATE TABLE `comments` (
 
 /*Data for the table `comments` */
 
-insert  into `comments`(`id`,`COMMENT`,`STATUS`,`created_at`,`updated_at`,`user_id`,`content_id`) values 
+insert  into `comments`(`id`,`COMMENT`,`STATUS`,`created_at`,`updated_at`,`user_id`,`content_id`) values
 (1,'Great tutorial! Very informative.','Approved','2024-01-04 15:53:07','2024-01-04 15:53:07',1,1),
 (2,'I love Paris! Such a beautiful city.','Pending','2024-01-04 15:53:07','2024-01-04 15:53:07',2,2),
 (3,'These recipes are making me hungry!','Approved','2024-01-04 15:53:07','2024-01-04 15:53:07',3,3),
@@ -123,7 +123,7 @@ CREATE TABLE `contents` (
 
 /*Data for the table `contents` */
 
-insert  into `contents`(`id`,`title`,`DESCRIPTION`,`channel_id`,`user_id`,`created_at`,`updated_at`) values 
+insert  into `contents`(`id`,`title`,`DESCRIPTION`,`channel_id`,`user_id`,`created_at`,`updated_at`) values
 (1,'Introduction to Artificial Intelligence','Learn the basics of AI and its applications',1,1,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (2,'Paris: The City of Lights','Explore the enchanting streets and landmarks of Paris',2,2,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (3,'Delicious Pasta Recipes','Discover mouthwatering pasta dishes from around the world',3,3,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
@@ -166,7 +166,7 @@ CREATE TABLE `migrations` (
 
 /*Data for the table `migrations` */
 
-insert  into `migrations`(`id`,`migration`,`batch`) values 
+insert  into `migrations`(`id`,`migration`,`batch`) values
 (1,'2014_10_12_000000_create_users_table',1),
 (2,'2014_10_12_100000_create_password_reset_tokens_table',1),
 (3,'2019_08_19_000000_create_failed_jobs_table',1),
@@ -227,7 +227,7 @@ CREATE TABLE `play_list` (
 
 /*Data for the table `play_list` */
 
-insert  into `play_list`(`id`,`title`,`user_id`,`content_id`,`created_at`,`updated_at`) values 
+insert  into `play_list`(`id`,`title`,`user_id`,`content_id`,`created_at`,`updated_at`) values
 (1,'My AI Favorites',1,1,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (2,'Travel Adventure Playlist',2,2,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (3,'Cooking Delights',3,3,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
@@ -259,7 +259,7 @@ CREATE TABLE `suscribes` (
 
 /*Data for the table `suscribes` */
 
-insert  into `suscribes`(`id`,`title`,`user_id`,`content_id`,`created_at`,`updated_at`) values 
+insert  into `suscribes`(`id`,`title`,`user_id`,`content_id`,`created_at`,`updated_at`) values
 (1,'AI Enthusiasts',1,1,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (2,'Travel Enthusiasts',2,2,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (3,'Foodies Club',3,3,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
@@ -291,7 +291,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`,`role`) values 
+insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`,`role`) values
 (1,'obert','obert@gmail.com',NULL,'$2y$12$F.MxlAYcClls2WdIiJ.j8O706XxmUOlOaP6/lwqLglJa7M8AvwM0i',NULL,'2024-01-04 08:35:51','2024-01-04 08:35:51','user'),
 (2,'julian','julian@gmail.com',NULL,'$2y$12$nvEOlX.8Ls5KkW8vvt3hyecEShCSZT/vNVfft3u0aMdiffUz3C2Ra',NULL,'2024-01-04 08:42:40','2024-01-04 08:42:40','user'),
 (3,'ryan','ryan@gmail.com',NULL,'$2y$12$RLJSILyidGQWD2Vz3104U.sQcI84BpvvdGlPBXrxjiwa3OBjifTZG',NULL,'2024-01-04 08:43:03','2024-01-04 08:43:03','user'),
@@ -324,7 +324,7 @@ CREATE TABLE `watch_later` (
 
 /*Data for the table `watch_later` */
 
-insert  into `watch_later`(`id`,`NAMES`,`user_id`,`content_id`,`created_at`,`updated_at`) values 
+insert  into `watch_later`(`id`,`NAMES`,`user_id`,`content_id`,`created_at`,`updated_at`) values
 (1,'AI Basics Tutorial',1,1,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (2,'Paris Travel Documentary',2,2,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
 (3,'Delicious Pasta Cooking Class',3,3,'2024-01-04 15:53:07','2024-01-04 15:53:07'),
