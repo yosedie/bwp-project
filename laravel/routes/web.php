@@ -53,10 +53,13 @@ Route::post('/create', [UserAdministrator::class, 'create']);
 
 Route::get('/getUsers', [UserAdministrator::class, 'getUsers'])->name('getUsers');
 
+
+Route::put('/update-user/{id}', 'UserController@update')->name('update-user');
+
 // Route::post('/update-user', [UserAdministrator::class, 'updateUser'])->name('update-user');
 
-Route::get('/user/{id}/edit', [UserAdministrator::class, 'edit'])->name('user.edit');
-Route::put('/user/{id}/update', [UserAdministrator::class, 'update'])->name('update-user');
+// Route::get('/user/{id}/edit', [UserAdministrator::class, 'edit'])->name('user.edit');
+// Route::put('/user/{id}/update', [UserAdministrator::class, 'update'])->name('update-user');
 
 // Route::post('/update-user', [UserAdministrator::class, 'updateUser'])->name('update-user');
 // Route::get('/create',[UserAdministrator::class,'create']);

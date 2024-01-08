@@ -59,16 +59,15 @@
                             <a href="javascript:void(0)" class="delete-user btn btn-danger" data-user-id="{{ $item->id }}">
                                 Delete
                             </a>
-                            <a id="updateUserRoleBtncol"
-                            type="button"
-                            class="btn btn-primary"
-                            {{-- data-user-id="{{ $item->id }} --}}
+                            {{-- <a
+                            href="javascript:void(0)"
+                            id="updateUserRoleBtncol"
+                            type="button" class="btn btn-primary"
+                            data-user-id="{{ $item->id }}"
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModalupdate"
-                            style="color:white; background-color: blue;">Update</a>
-                            {{-- <button id="updateUserRoleBtncol"type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModalupdate"
-                            style="color:white; background-color: blue;">Update</button> --}}
+                            style="color:white; background-color: blue;">Update</a> --}}
+
                         </td>
                     </tr>
                 @endif
@@ -87,39 +86,38 @@
 
 
   <!-- Modal update-->
-  <div class="modal fade" id="exampleModalupdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  {{-- <div class="modal fade" id="exampleModalupdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
             </div>
             <div class="modal-body">
-
                 <div class="card-body">
                     @foreach ($users as $user)
-                    <form id="update-user-form-{{ $user->id }}">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="updateUser('{{ route("update-user", $user->id) }}')">Update User</button>
-                    </form>
-                @endforeach
+                        <form id="update-user-form-{{ $user->id }}">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="updateUser('{{route('update-user',$user->id)}}')">Update User</button>
+                        </form>
+                    @endforeach
+                </div>
+
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color:white; background-color: gray;">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    </div>
-  </div>
-</div>
+</div> --}}
 
   <!-- Modal retrieve user-->
   <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -211,6 +209,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
+
     $(document).ready(function() {
     // Ajax request to create a user
     $('#create-user-form').submit(function(event) {
@@ -235,23 +234,43 @@
     });
 
     // Ajax request to update a user
-    $('.update-user').click(function() {
-        var userId = $(this).data('user-id');
-        var updatedName = prompt('Enter the updated name:');
+    $.put = function(url, data, callback, dataType){
+        if ($.isFunction(data)){
+            dataType = dataType || callback;
+            callback = data;
+            data = {};
+        }
+        return $.ajax({
+            url: url,
+            type: 'PUT',
+            success: callback,
+            data: data,
+            dataType: dataType
+        });
+    };
 
-        $.ajax({
-            url: '/admin/users/' + userId, // Adjust the route accordingly
-            method: 'PUT',
-            data: { name: updatedName },
-            success: function(response) {
+    function updateUser(url) {
+        // Extract user ID from the URL
+        var userId = url.split('/').pop();
+
+        // Collect form data
+        var formData = $('#update-user-form-' + userId).serialize();
+
+        // Make Ajax request using $.put
+        $.put({
+            url: url,
+            data: formData,
+            success: function (response) {
                 console.log(response.message);
-                // Add logic to refresh the users list or show success message
+                // Optionally, show success message or perform other actions
+                // For example, reload the page
+                location.reload();
             },
-            error: function(error) {
+            error: function (error) {
                 console.error('Error updating user:', error.responseJSON);
             }
         });
-    });
+    }
 
 
         $('.delete-user').on('click', function() {
@@ -305,65 +324,37 @@
                 }
             });
         });
-        // $('#updateUserBtncol').click(function() {
-        //     function updateUser() {
-        //     // Collect form data
-        //     var formData = $('#update-user-form').serialize();
-        //     // Make Ajax request
-        //     $.ajax({
-        //         url: $('#update-user-form').attr('action'), // Use the form action URL
-        //         method: 'POST',
-        //         data: formData,
-        //         success: function (response) {
-        //             console.log(response.message);
-        //             // Optionally, show success message or perform other actions
-        //             // For example, close the modal
-        //             fetchAndDisplayUsers();
-        //             $('#exampleModal').modal('hide');fetchAndDisplayUsers();
-        //         },
-        //         error: function (error) {
-        //             console.error('Error updating user:', error.responseJSON);
-        //         }
-        //         });
-        //     }
-        // });
-        $.put = function(url, data, callback, dataType){
-            if ($.isFunction(data)){
-                dataType = dataType || callback;
-                callback = data;
-                data = {};
-            }
-            return $.ajax({
-                url: url,
-                type: 'PUT',
-                success: callback,
-                data: data,
-                dataType: dataType
-            });
-        };
 
-        function updateUser(url) {
-            // Extract user ID from the URL
-            var userId = url.split('/').pop();
+        var selectedUserId;
 
-            // Collect form data
-            var formData = $('#update-user-form-' + userId).serialize();
+        // Function to set the user information in the modal form
+        function setUserInfo(userId, name, email) {
+            selectedUserId = userId;
+            $('#name').val(name);
+            $('#email').val(email);
+        }
 
-            // Make Ajax request using $.put
-            $.put({
-                url: url,
-                data: formData,
-                success: function (response) {
-                    console.log(response.message);
-                    // Optionally, show success message or perform other actions
-                    // For example, reload the page
-                    location.reload();
+    // Function to update the user using AJAX
+
+
+        // Event listener for when the modal is shown
+        $('#exampleModalupdate').on('show.bs.modal', function (event) {
+            // Extract user ID from the button that triggered the modal
+            var button = $(event.relatedTarget);
+            var userId = button.data('user-id');
+
+            // Get user information using AJAX and set it in the form
+            $.ajax({
+                url: '/user/' + userId + '/edit',
+                method: 'GET',
+                success: function (user) {
+                    setUserInfo(user.id, user.name, user.email);
                 },
                 error: function (error) {
-                    console.error('Error updating user:', error.responseJSON);
+                    console.error('Error getting user information:', error.responseJSON);
                 }
             });
-        }
+        });
         function fetchAndDisplayUsers() {
             $.ajax({
                 url: '/getUsers',

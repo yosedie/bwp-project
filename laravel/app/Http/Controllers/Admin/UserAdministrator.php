@@ -55,31 +55,29 @@ class UserAdministrator extends Controller
     //     ]);
     //     return response()->json(['message' => 'User updated successfully']);
     // }
-    public function edit($id)
+    // public function edit($id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     return view('update-user', compact('user'));
+    // }
+
+    public function updateUser(Request $request)
     {
-        $user = User::findOrFail($id);
-        return view('update-user', compact('user'));
-    }
+        $userId = $request->input('user_id');
+        $name = $request->input('name');
+        $email = $request->input('email');
 
-    public function update(Request $request, $id)
-    {
-        // Validate the request
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-        ]);
+        // Update the user in the database
+        $user = User::find($userId);
+        if ($user) {
+            $user->name = $name;
+            $user->email = $email;
+            $user->save();
 
-        // Find the user
-        $user = User::findOrFail($id);
-
-        // Update user data
-        $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            // Add more fields as needed
-        ]);
-
-        return response()->json(['message' => 'User updated successfully']);
+            return response()->json(['status' => 'success', 'message' => 'User updated successfully']);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'User not found']);
+        }
     }
     public function changeUserRole(Request $request, $id)
     {
