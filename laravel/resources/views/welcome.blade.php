@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>DH</title>
+        {{-- <link rel="icon" type="image/png" href="path/to/your-icon.png"> --}}
+        <link rel="icon" href="https://play-lh.googleusercontent.com/rCziw7h716n2XyJrfVDE9Cf8bJ1sGU7oDv9nq1APOQT1M5gPTy_EOP96DUQRD44tBnZN=w240-h480-rw" type="image/png">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
