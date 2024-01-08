@@ -24,9 +24,14 @@
 </head>
 
 <body>
-    {{-- <button onclick="document.body.classList.toggle('dark-mode')">Toggle Dark Mode</button> --}}
-
+    <button onclick="document.body.classList.toggle('dark-mode')">Toggle Dark Mode</button>
     <script>
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+    </script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (localStorage.getItem('dark-mode') === 'true') {
                 document.body.classList.add('dark-mode');
@@ -37,7 +42,7 @@
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
         });
-    </script>
+    </script> --}}
 
     {{-- Nav --}}
     <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
