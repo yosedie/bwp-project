@@ -23,7 +23,6 @@
 </head>
 
 <body>
-    <button onclick="document.body.classList.toggle('dark-mode')">Toggle Dark Mode</button>
     <script>
         function toggleDarkMode() {
             var body = document.body;
@@ -48,12 +47,17 @@
         <div class="container-fluid">
             <a class="navbar-brand">Dishub</a>
 
-            <ul class="navbar-nav nav-underlinemb-2 mb-lg-0 justify-content-end">
+            <ul class="navbar-nav nav-underline mb-2 mb-lg-0 justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link"href="home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="channel">Channel</a>
+                </li>
+                <li>
+                    <button class="btn btn-outline-light" onclick="document.body.classList.toggle('dark-mode')">Toggle
+                        Dark
+                        Mode</button>
                 </li>
             </ul>
         </div>
@@ -114,8 +118,12 @@
                             <p class="badge bg-primary">{{ $item->country }}</p>
                             <p class="badge bg-danger">{{ $item->city }}</p>
                             <ul class="list-group">
-                                <li class="list-group-item">Suscriber: {{ $item->suscribe }}</li>
-                                <li class="list-group-item">Followers: {{ $item->followers }}</li>
+                                <li class="list-group-item list-group-item-dark text-white">Suscriber:
+                                    {{ $item->suscribe }}
+                                </li>
+                                <li class="list-group-item list-group-item-dark text-white">Followers:
+                                    {{ $item->followers }}
+                                </li>
                             </ul>
                             <br>
                             <div class="row">
