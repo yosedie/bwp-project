@@ -61,7 +61,8 @@ Route::post('/update-user', [UserAdministrator::class, 'updateUser'])->name('upd
 Route::get('/update/{id}',[UserAdministrator::class,'update']);
 // Route::get('/destroy/{id}',[UserAdministrator::class,'destroy']);
 
-
+//create_function
+Route::get('/create', [UserAdministrator::class, 'create']);
 
 // Route::get('/delete/{id}', [UserAdministrator::class, 'delete'])->name('delete');
 
