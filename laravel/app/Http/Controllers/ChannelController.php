@@ -13,7 +13,7 @@ class ChannelController extends Controller
     {
         $query = $request->string('query')->trim();
         if ($query) {
-            $channel = Channel::where('NAME', 'LIKE', '%'.$query.'%')->get();
+            $channel = Channel::where('NAME', 'LIKE', '%' . $query . '%')->get();
         } else {
             $channel = Channel::all();
         }
@@ -26,7 +26,7 @@ class ChannelController extends Controller
         $channels = Channel::where('id', $id)->get();
         return view('channel', compact('channel'));
     }
-    
+
     public function subscribeChannel($id)
     {
         $channel = Channel::find($id);
