@@ -47,7 +47,19 @@ Route::get('/admin', function () {
 Route::get('/admin', [UserAdministrator::class, 'getUsers'])->name('dashboard');
 
 //delete users
-Route::post('/admin/{id}', [UserAdministrator::class, 'changeUserRole']);
+Route::post('/changeUserRole/{id}', [UserAdministrator::class, 'changeUserRole']);
+
+Route::post('/create', [UserAdministrator::class, 'create']);
+
+Route::get('/getUsers', [UserAdministrator::class, 'getUsers'])->name('getUsers');
+
+Route::post('/update-user', [UserAdministrator::class, 'updateUser'])->name('update-user');
+
+// Route::get('/create',[UserAdministrator::class,'create']);
+// Route::get('/store',[UserAdministrator::class,'store']);
+// Route::get('/show/{id}',[UserAdministrator::class,'show']);
+Route::get('/update/{id}',[UserAdministrator::class,'update']);
+// Route::get('/destroy/{id}',[UserAdministrator::class,'destroy']);
 
 
 
